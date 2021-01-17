@@ -63,6 +63,7 @@ def chanegcolour(box,colour,x,y):
 	global currentcolour
 	if box.collidepoint(x,y):
 		currentcolour = colour
+		pygame.draw.rect(settings,currentcolour,[25,25,50,50],0)
 
 while True:
 	# add surfaces + update

@@ -20,6 +20,7 @@ gray = (128,128,128)
 
 press = False
 currentcolour = black
+currentsize = 10
 background = white
 
 # initialize screen
@@ -55,8 +56,8 @@ boxes = [(redbox,red),(limebox,lime),(bluebox,blue),(aquabox,aqua),(fuchsiabox,f
 (yellowbox,yellow),(navybox,navy),(tealbox,teal),(greenbox,green),(purplebox,purple),
 (maroonbox,maroon),(olivebox,olive),(silverbox,silver),(blackbox,black),(whitebox,white)]
 
-def draw(surf,colour,x,y):
-	pygame.draw.circle(surf,colour,(x,y),10)
+def draw(surf,colour,size,x,y):
+	pygame.draw.circle(surf,colour,(x,y),size)
 	pygame.display.flip() # update screen
 
 def chanegcolour(box,colour,x,y):
@@ -89,7 +90,7 @@ while True:
 		# draw if mouse down
 		if press == True:
 			(x,y) = pygame.mouse.get_pos()
-			draw(drawing,currentcolour,x,y)
+			draw(drawing,currentcolour,currentsize,x,y)
 
 		# key press
 		if event.type == pygame.KEYDOWN:

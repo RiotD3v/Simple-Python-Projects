@@ -52,6 +52,9 @@ silverbox = pygame.draw.rect(settings,silver,[340,20,20,20],0)
 blackbox = pygame.draw.rect(settings,black,[340,60,20,20],0)
 whitebox = pygame.draw.rect(settings,white,[380,20,20,20],0)
 
+plusbox = pygame.draw.rect(settings,black,[620,20,20,20],0)
+minusbox = pygame.draw.rect(settings,black,[660,20,20,20],0)
+
 boxes = [(redbox,red),(limebox,lime),(bluebox,blue),(aquabox,aqua),(fuchsiabox,fuchsia),
 (yellowbox,yellow),(navybox,navy),(tealbox,teal),(greenbox,green),(purplebox,purple),
 (maroonbox,maroon),(olivebox,olive),(silverbox,silver),(blackbox,black),(whitebox,white)]
@@ -82,6 +85,13 @@ while True:
 			# check to see if click is to change colour
 			for box in boxes:
 				chanegcolour(box[0],box[1],x,y)
+
+			if plusbox.collidepoint(x,y):
+				currentsize += 1
+			if minusbox.collidepoint(x,y):
+				if currentsize > 1:
+					currentsize -= 1
+					print(currentsize)
 
 		# mouse up
 		if event.type == pygame.MOUSEBUTTONUP:

@@ -56,8 +56,11 @@ silverbox = pygame.draw.rect(settings,silver,[340,20,20,20],0)
 blackbox = pygame.draw.rect(settings,black,[340,60,20,20],0)
 whitebox = pygame.draw.rect(settings,white,[380,20,20,20],0)
 
-minusbox = pygame.draw.rect(settings,black,[620,20,20,20],0)
-plusbox = pygame.draw.rect(settings,black,[660,20,20,20],0)
+minusbox = pygame.draw.rect(settings,gray,[620,20,20,20],0)
+plusbox = pygame.draw.rect(settings,gray,[660,20,20,20],0)
+
+plus = pygame.transform.scale((pygame.image.load("plus.png")),(20,20))
+minus = pygame.transform.scale((pygame.image.load("minus.png")),(20,20))
 
 boxes = [(redbox,red),(limebox,lime),(bluebox,blue),(aquabox,aqua),(fuchsiabox,fuchsia),
 (yellowbox,yellow),(navybox,navy),(tealbox,teal),(greenbox,green),(purplebox,purple),
@@ -77,6 +80,8 @@ while True:
 	# add surfaces
 	screen.blit(drawing,(0,0))
 	screen.blit(settings,(0,700))
+	screen.blit(plus,(660,720))
+	screen.blit(minus,(620,720))
 
 	# font size display
 	sizetext = font.render(str("{0:0=3d}".format(currentsize)),True,black)

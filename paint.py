@@ -1,5 +1,7 @@
 import pygame
 
+pygame.init()
+
 # vars
 red = (255,0,0)
 lime = (0,255,0)
@@ -22,6 +24,8 @@ press = False
 currentcolour = black
 currentsize = 10
 background = white
+
+font = pygame.font.Font("freesansbold.ttf",20)
 
 # initialize screen
 screen = pygame.display.set_mode((700,800))
@@ -52,8 +56,8 @@ silverbox = pygame.draw.rect(settings,silver,[340,20,20,20],0)
 blackbox = pygame.draw.rect(settings,black,[340,60,20,20],0)
 whitebox = pygame.draw.rect(settings,white,[380,20,20,20],0)
 
-plusbox = pygame.draw.rect(settings,black,[620,20,20,20],0)
-minusbox = pygame.draw.rect(settings,black,[660,20,20,20],0)
+minusbox = pygame.draw.rect(settings,black,[620,20,20,20],0)
+plusbox = pygame.draw.rect(settings,black,[660,20,20,20],0)
 
 boxes = [(redbox,red),(limebox,lime),(bluebox,blue),(aquabox,aqua),(fuchsiabox,fuchsia),
 (yellowbox,yellow),(navybox,navy),(tealbox,teal),(greenbox,green),(purplebox,purple),
@@ -70,9 +74,15 @@ def chanegcolour(box,colour,x,y):
 		pygame.draw.rect(settings,currentcolour,[25,25,50,50],0)
 
 while True:
-	# add surfaces + update
+	# add surfaces
 	screen.blit(drawing,(0,0))
 	screen.blit(settings,(0,700))
+
+	# font size display
+	sizetext = font.render(str("{0:0=3d}".format(currentsize)),True,black)
+	screen.blit(sizetext,(635,760))
+
+	# update
 	pygame.display.flip()
 
 	for event in pygame.event.get():
@@ -87,11 +97,11 @@ while True:
 				chanegcolour(box[0],box[1],x,y)
 
 			if plusbox.collidepoint(x,y):
-				currentsize += 1
+				if currentsize < 100:
+					currentsize += 1
 			if minusbox.collidepoint(x,y):
 				if currentsize > 1:
 					currentsize -= 1
-					print(currentsize)
 
 		# mouse up
 		if event.type == pygame.MOUSEBUTTONUP:
